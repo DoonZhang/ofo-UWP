@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="ofo.Views.SplashPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ofo.Views"
+    xmlns:JiuYouAdUniversal="using:JiuYouAdUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded" Background="White">
+    
+    <Grid>
+        <Image Source="ms-appx:///Assets/Images/Splash.png"/>
+
+        <JiuYouAdUniversal:AdControl x:Name="FullAD"             
+                             ApplicationKey="b7da690d5a4ec86af4f548612ec392c1"
+                             AdType="VerticalScreen"/>
+        <TextBlock Text="5秒自动跳转" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+    </Grid>
+</Page>

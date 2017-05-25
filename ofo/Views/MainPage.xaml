@@ -1,0 +1,173 @@
+﻿<Page
+    x:Class="ofo.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ofo.Views"
+    xmlns:JiuYouAdUniversal="using:JiuYouAdUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Foreground="#FFFEDA00" Loaded="Page_Loaded">
+
+    <Grid Background="#FF262626">
+      
+        <WebView x:Name="WebSite"
+                 NavigationCompleted="OnNavCompleted" 
+                 ContentLoading="OnContentLoading" 
+                 />
+
+        <ProgressBar x:Name="loading" IsIndeterminate="True" Visibility="Collapsed" Foreground="SkyBlue" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="LoadingText" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
+        <Image x:Name="LoadingPic" Source="ms-appx:///Assets/Images/Loading.png" Stretch="None" Grid.ColumnSpan="2"/>
+        <Button x:Name="Back" FontFamily="Segoe MDL2 Assets" Content="&#xE012;" FontSize="20" Click="Back_Click" VerticalAlignment="Top" Background="{x:Null}" Margin="40,0,0,0" />
+        
+        
+        <TextBlock x:Name="QR"  FontFamily="Segoe MDL2 Assets" FontSize="40" Text="&#xE114;" HorizontalAlignment="Right" VerticalAlignment="Top" Tapped="QR_Tapped" Grid.ColumnSpan="2" Margin="0,0,15,0" Visibility="Collapsed"/>
+        <Ellipse Fill="Black" Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,28" Tapped="Use_Tapped"/>
+
+        <SplitView x:Name="MenuView" DisplayMode="CompactOverlay" CompactPaneLength="0" IsPaneOpen="False" OpenPaneLength="200">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="350*"/>
+                        <RowDefinition Height="200*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Button x:Name="MainMenu" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="20"  />
+                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18" Text="菜单"/>
+                    </StackPanel>
+                    <!--
+                    <Grid Grid.Row="1">
+                        <StackPanel>
+                            <Ellipse Fill="#FFA8A8A8" Height="70" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Image/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock x:Name="name"/>
+                            <TextBlock x:Name="phone"/>
+                            <TextBlock x:Name="credit"/>
+                        </StackPanel>
+                    </Grid>
+                    -->
+                    <ListView Grid.Row="1" Grid.RowSpan="3">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+<!--
+                        <StackPanel Orientation="Horizontal" Tapped="Home_Tapped">
+                            <TextBlock FontSize="20" FontFamily="Segoe MDL2 Assets" Text="&#xE10F;" VerticalAlignment="Center"/>
+                            <Button Content="我的行程" Background="{x:Null}" Margin="5,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Tapped="Home_Tapped">
+                            <TextBlock FontSize="20" FontFamily="Segoe MDL2 Assets" Text="&#xE10F;" VerticalAlignment="Center"/>
+                            <Button Content="我的钱包" Background="{x:Null}" Margin="5,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Tapped="Home_Tapped">
+                            <TextBlock FontSize="20" FontFamily="Segoe MDL2 Assets" Text="&#xE10F;" VerticalAlignment="Center"/>
+                            <Button Content="使用指南" Background="{x:Null}" Margin="5,0,0,0"/>
+                        </StackPanel>
+                       -->
+                        <StackPanel Orientation="Horizontal" Tapped="Home_Tapped">
+                            <TextBlock FontSize="20" FontFamily="Segoe MDL2 Assets" Text="&#xE10F;" VerticalAlignment="Center"/>
+                            <Button Content="首页" Background="{x:Null}" Margin="5,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Tapped="Assess_Tapped">
+                            <TextBlock FontSize="20" FontFamily="Segoe MDL2 Assets" Text="&#xE19F;" VerticalAlignment="Center"/>
+                            <Button Content="五星好评" Background="{x:Null}" Margin="5,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Tapped="More_Tapped">
+                            <TextBlock FontSize="20" FontFamily="Segoe MDL2 Assets" Text="&#xE10C;" VerticalAlignment="Center"/>
+                            <Button Content="更多" Background="{x:Null}" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </ListView>
+
+                    <StackPanel Grid.Row="3" Margin="10,0,0,0">
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0"  >
+                            <TextBlock FontSize="25" FontFamily="Segoe MDL2 Assets" Text="&#xE83D;" VerticalAlignment="Center"/>
+                            <Button Content="缴纳押金" Background="{x:Null}" Margin="5,0,0,0" Click="Cash_Click"/>
+
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0"  >
+                            <TextBlock FontSize="25" FontFamily="Segoe MDL2 Assets" Text="&#xE18C;" VerticalAlignment="Center"/>
+                            <Button Content="充值" Background="{x:Null}" Margin="5,0,0,0" Click="Recharge_Click"/>
+
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Tapped="Login_Tapped"  >
+                            <TextBlock FontSize="25" FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" VerticalAlignment="Center"/>
+                            <Button Content="登陆/注销" Background="{x:Null}" Margin="5,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Tapped="Setting_Tapped" >
+                            <TextBlock FontSize="25" FontFamily="Segoe MDL2 Assets" Text="&#xE115;" VerticalAlignment="Center"/>
+                            <Button Content="设置" Background="{x:Null}" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
+
+        <SplitView DisplayMode="CompactOverlay" CompactPaneLength="0" IsPaneOpen="False" OpenPaneLength="200"  x:Name="SettingView" HorizontalContentAlignment="Stretch" PanePlacement="Right" Grid.ColumnSpan="2">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18" Text="设置"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="10,0,0,0">
+
+                            <StackPanel Orientation="Horizontal" Tapped="About_Tapped" Margin="0,10,0,0">
+                                <TextBlock FontSize="25" FontFamily="Segoe MDL2 Assets" Text="&#xE171;" VerticalAlignment="Center"/>
+                                <Button Content="关于软件" Background="{x:Null}" Margin="5,0,0,0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock FontSize="25" FontFamily="Segoe MDL2 Assets" Text="&#xE946;" VerticalAlignment="Center"/>
+                                <Button Content="版权声明" Background="{x:Null}" Margin="5,0,0,0">
+                                    <Button.Flyout>
+                                        <Flyout Placement="Bottom">
+                                            <StackPanel>
+                                                <TextBlock Text="ofo共享单车版权归北京拜克洛克科技有限公司所有" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Tapped="Exit_Tapped" Margin="0,10,0,0">
+                                <TextBlock FontSize="25" FontFamily="Segoe MDL2 Assets" Text="&#xE726;" VerticalAlignment="Center"/>
+                                <Button Content="退出" Background="{x:Null}" Margin="5,0,0,0"/>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <JiuYouAdUniversal:AdControl x:Name="banner"             
+                             ApplicationKey="b7da690d5a4ec86af4f548612ec392c1"
+                             AdType="Banner" 
+                             VerticalAlignment="Bottom"
+                              />
+                    </StackPanel>
+
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
+
+        <Button x:Name="Menu" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="20" Click="Menu_Click" VerticalAlignment="Top" Background="{x:Null}" />
+    </Grid>
+</Page>

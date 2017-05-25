@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="ofo.Views.UsePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ofo.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      
+        <WebView x:Name="UseSite" Grid.RowSpan="5"/>
+        <Ellipse Width="48" Height="48" Margin="0,3,19,0" HorizontalAlignment="Right" VerticalAlignment="Top" Fill="#FFD4D4D4" Tapped="QR_Tapped" Grid.Row="1" />
+        <StackPanel>
+            <Image Source="ms-appx:///Assets/Images/use_page_head.png" Grid.RowSpan="2" VerticalAlignment="Top"/>
+                <TextBox Header="输入车牌号" HorizontalContentAlignment="Stretch" Width="286"/>
+                <Button Content="确认" HorizontalAlignment="Center" Margin="163,0,147,0" Tapped="Ok_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
